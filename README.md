@@ -1,7 +1,15 @@
-# Tauri + Vanilla TS
+# Tauri deep link focus issue
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+Repro steps:
 
-## Recommended IDE Setup
+1. Set up `tauri_plugin_deep_link::register` with a handler that tries to call `window.set_focus()`
+2. Open the app
+3. Fire a notification that opens the app with a protocol
+4. Put the app in the background by focusing a different app
+5. Click the notification
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Expected result:
+App comes to the foreground
+
+Actual result:
+App flashes in the taskbar and does not come to the foreground
